@@ -8,6 +8,7 @@ class DdSpider(scrapy.Spider):
     start_urls=["http://category.dangdang.com/cp01.54.00.00.00.00.html"]
     def parse(self, response):
         grocery=Dangdang25Item()
+        #using grocery["tltl"] instead grocery.titl could avoid unnecessary mistakes sometimes
         grocery["titl"]=response.xpath("//a[@class='pic']/@title").extract()
         grocery["link"]=response.xpath("//a[@class='pic']/@href").extract()
         grocery["comment"]=response.xpath("//a[@class='search_comment_num']/text()").extract()
